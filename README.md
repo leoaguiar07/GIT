@@ -1,4 +1,4 @@
-![capa](https://blog.coffeedevs.com/content/images/size/w1000/2016/07/Git-rename-branch.jpg)
+![capa](https://github.com/leoaguiar07/GIT/blob/main/git.jpg)
 
 ## Controle de Versão e Git
 
