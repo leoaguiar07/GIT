@@ -278,6 +278,30 @@ git commit -m ".gitignore agora está funcionando"
 
 Para desfazer o git rm --cached filename, use git add filename
 
+#### Removendo arquivos depois de adiciona-los no .gitignore
+
+1. Primeiramente adicione normalmente os arquivos não necessários no arquivo .gitignore
+2. Depois vamos rodar o comando git rm com algumas flags como: -r e –chached
+3. Isso fará com que os arquivos citados no ignore, sejam removidos
+4. Porém para persistir as alterações precisamos ainda dar um git add, que vai enviar a remoção de arquivos para o repositório
+5. E por fim dar um commit neste add e um push, assim tudo estará resolvido
+
+Veja os comandos necessários:
+
+```python
+git rm -r --chached .
+```
+
+```python
+git add .
+```
+
+```python
+git commit -a -m "removendo arquivos não necessários"
+```
+```python
+git push oriigin main
+```
 
 ## Clonar um repositório
 1. No GitHub.com, navegue até a página principal do repositório.
