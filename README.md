@@ -8,8 +8,7 @@
 
 O Git é uma parte importante da programação no dia a dia (especialmente se você estiver trabalhando em equipe) e é amplamente usado no setor de software.
 
-Como existem muitos comandos que você pode utilizar, dominar o Git por completo leva tempo. Alguns comandos, no entanto, são usados com mais frequência (alguns, até, diariamente). Neste artigo, compartilharei e explicarei os 10 comandos do Git mais usados e que todo desenvolvedor deveria conhecer.
-
+Como existem muitos comandos que você pode utilizar, dominar o Git por completo leva tempo. Alguns comandos, no entanto, são usados com mais frequência (alguns, até, diariamente). 
 Observação: para entender este artigo, você precisa conhecer o básico sobre o Git.
 
 ### 1. Git clone
@@ -97,7 +96,7 @@ Para adicionar tudo ao mesmo tempo:
 
 
 ```python
-git add -A
+git add -a
 ```
 Ao ver a imagem acima, na 4ª seção, você verá que existem nomes de arquivo que estão em vermelho - isso significa que os arquivos ainda não estão em fase de stage. Esses arquivos não serão incluídos em seus commits.
 
@@ -107,6 +106,20 @@ Para incluí-los, precisamos usar git add:
 
 Os arquivos em verde agora estão em fase de stage com o git add
 Importante: o comando git add não altera o repositório. As alterações não são salvas até que se use o git commit.
+
+
+Ou para adicionar mais arquivos ao mesmo tempo,
+```python
+$ git add index.html estilo.css
+```
+Caso queira adicionar todos os arquivos de um diretório recursivamente; o que inclui seus subdiretórios e arquivos ou pastas ocultas,
+```python
+$ git add .
+```
+Para adicionar todos os arquivos de uma determinada extensão.
+```python
+$ git add *.txt
+```
 
 ### 6. Git commit
 Talvez esse seja o comando mais usado do Git. Quando chegamos a determinado ponto em desenvolvimento, queremos salvar nossas alterações (talvez após uma tarefa ou resolução de problema específica).
@@ -197,8 +210,73 @@ git merge <nome-da-branch-com-o-recurso>
 ```
 Dica: certifique-se de que sua branch dev tem a versão mais recente antes de fazer o merge de suas branches de recurso. Do contrário, você pode ter que lidar com conflitos e outros problemas indesejados.
 
-Esses são os meus 10 comandos mais usados do Git, com os quais eu lido diariamente ao programar. Existe muito mais para se aprender sobre o Git e eu tentarei explicar o resto em artigos separados.
+### 11. .gitignore
 
+O arquivo .gitignore é um arquivo de texto que diz ao Git quais arquivos ou pastas ele deve ignorar em um projeto.
+
+Um arquivo .gitignore local geralmente é colocado no diretório raiz de um projeto. Você também pode criar um arquivo .gitignore global e todas as entradas que estiverem naquele arquivo serão ignoradas em todos os seus repositórios do Git.
+
+Para criar um arquivo .gitignore local, crie um arquivo de texto e dê a ele o nome de  .gitignore (lembre-se de incluir o . no começo). Em seguida, edite esse arquivo conforme necessário. Cada nova linha deve listar um arquivo ou pasta adicional que você quer que o Git ignore.
+
+As entradas neste arquivo também podem seguir um padrão de correspondência.
+
+* é usado para corresponder a um caractere curinga
+/ é usado para ignorar nomes de caminhos relativos ao arquivo .gitignore
+"#" é usado para adicionar comentários ao arquivo .gitignore
+
+Aqui temos um exemplo de como pareceria um arquivo .gitignore:
+
+Ignore todos os arquivos de texto<br>
+*.txt
+
+Ignore os arquivos de sistema do Mac<br>
+.DS_store
+
+Ignore a pasta node_modules<br>
+node_modules
+
+Ignore arquivos relacionados às chaves de API<br>
+.env
+
+Ignore arquivos de configuração de SASS<br>
+.sass-cache
+
+Para adicionar ou alterar seu arquivo .gitignore global, execute este comando:
+
+```python
+git config --global core.excludesfile ~/.gitignore_global
+```
+
+Isso criará o arquivo ~/.gitignore_global. Agora, você pode editar esse arquivo do mesmo modo que faz com um arquivo .gitignore local. Todos os seus repositórios do Git vão ignorar os arquivos e pastas listados no arquivo .gitignore global.
+
+Como remover arquivos enviados anteriormente por commit a partir de um novo Gitignore
+Para remover um único arquivo, ou seja, para parar de rastrear o arquivo, mas não excluir esse arquivo do sistema, use:
+
+```python
+git rm --cached filename
+```
+
+Para parar de rastrear todos os arquivos no .gitignore:
+
+Primeiro, faça o commit de quaisquer alterações no código que estejam faltando. Depois, execute o comando:
+
+```python
+git rm -r --cached
+```
+
+Isso removerá todos os arquivos alterados do índice (área de staging). Logo depois, execute:
+
+```python
+git add .
+```
+
+Faça o commit:
+
+```python
+git commit -m ".gitignore agora está funcionando"
+```
+
+Para desfazer o git rm --cached filename, use git add filename
 
 
 ## Clonar um repositório
